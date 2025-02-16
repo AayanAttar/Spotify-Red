@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block css %}
+<!-- Including the custom CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/music.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/player.css' %}" />
+{% endblock %}
+
+{% block title %}
+Player
+{% endblock %}
+
+{% block content %}
+<div class="music_area">
+    <section class="nav_section">
+        {% if track_info %}
+        
+        <nav class="track_container">
+            <img src="{{ track_info.image }}" alt="{{ track_info.tr_name }}" class="track_image">
+
+            <div class="player_info">
+                <h4 class="track_type">{{ track_info.tr_type }}</h4>
+
+                <h2 class="track_name">{{ track_info.tr_name }}</h2>
+                <div class="track_info">
+                    <img src="{{ track_info.art_image }}" class="artist_image" alt="Artist Image">
+                    <a href="{% url 'artist_songs' track_info.art_id %}" class="track_artist">
+                        {{ track_info.art_name }}
+                    </a>
+                    <span class="separator">•</span>
+                    <a href="{% url 'album_songs' track_info.id %}" class="track_album">
+                        {{ track_info.name }}
+                    </a>
+                    <span class="separator">•</span>
+                    {{ track_info.year }}
+                    <span class="separator">•</span>
+                    {{ track_info.tr_duration }}
+                </div>
+                
+            </div>
+        </nav>
+        
+        {% endif %}
+    </section>
+    
+    <!-- Play Button (Clickable) -->
+    <div class="play_button_container" onclick="playSong()">
+        <div class="circle">
+            <div class="triangle"></div>
+        </div>
+    </div>
+
+<h1>Now Playing: {{ track_info.tr_name }}</h1>
+    
+<!-- Audio player -->
+<audio id="audioPlayer" controls preload="auto">
+    <source src="{{ audio_url }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Play Button (Custom JavaScript Control) -->
+<button onclick="playAudio()">Play</button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ensure the DOM is fully loaded before attempting to access elements
+        const audioElement = document.getElementById("audioPlayer");
+
+        function playAudio() {
+            if (audioElement) {
+                audioElement.play().catch(error => {
+                    console.error("Audio playback error:", error);
+                });
+            } else {
+                console.error("Audio element not found.");
+            }
+        }
+
+        // Check if the audio element exists before adding event listeners
+        if (audioElement) {
+            audioElement.addEventListener('play', function() {
+                console.log("Audio is now playing.");
+            });
+
+            audioElement.addEventListener('pause', function() {
+                console.log("Audio is paused.");
+            });
+
+            audioElement.addEventListener('ended', function() {
+                console.log("Audio has ended.");
+            });
+        }
+    });
+</script>
+
+{% endblock %}

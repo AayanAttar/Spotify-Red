@@ -1,0 +1,62 @@
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Red Signup</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
+</head>
+
+<body>
+    <div class = "container">
+        <div class="logo-container">
+            <a href="{% url 'signup' %}">
+                <img src="{% static 'logo.jpg' %}" alt="Logo" class="logo">
+                <h3>Spotify</h3>
+            </a>
+        </div>
+
+        <div >
+            <style>
+                h5 {
+                    color: rgb(255, 255, 255);
+                }
+            </style>
+            {% for message in messages  %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+        </div>
+
+        <div class="signup-container">
+            {% comment %} <h2>Create an Account</h2> {% endcomment %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_username"></label>
+                    {{ form.username|add_attrs:"placeholder=Username,class=form-control" }}
+                </div>
+                <div class="form-group">
+                    <label for="id_email"></label>
+                    {{ form.email |add_attrs:"placeholder=Email,class=form-control"}}
+                </div>
+                <div class="form-group">
+                    <label for="password1"></label>
+                    {{ form.password1 |add_attrs:"placeholder=Password,class=form-control"}}
+                </div>
+                <div class="form-group">
+                    <label for="password2"> </label>
+                    {{ form.password2 |add_attrs:"placeholder=Confirm Password,class=form-control"}}
+                </div>
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            <div class="login-link">
+                <h3>Already have an account? <a href="{% url 'login' %}">Login here</a> </h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

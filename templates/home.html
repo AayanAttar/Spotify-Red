@@ -1,0 +1,156 @@
+{% extends "index.html" %}
+{% load static %}
+
+
+<!-- Including the custom CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}" />
+
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="music_area">
+  <section class="artist_section">
+    <nav class="navi">
+      <ul class="rounded-pill">
+        <li><a href="#">All</a></li>
+        <li><a href="#">Music</a></li>
+        <li><a href="#">Podcast</a></li>
+      </ul>
+    </nav>
+    <div class="nav_text">
+      <a href="#" class="linked">Top-Tracks of {{username}}</a>
+    </div>
+    <div class="cards">
+      {% if static_cards %}
+        {% for card in static_cards %}
+        <a href="{% url 'album_songs' %}">
+            <div class="artist_card">
+                <ul>
+                    <li>
+                        <img src="{{ card.image }}" alt="{{ card.name }}">
+                    </li>
+                </ul>
+                <div class="artist_body">
+                    {{ card.name }} by {{ card.artist }}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+      {% elif  Top_tracks %}
+        {% for track in Top_tracks %}
+        <a href="{% url 'album_songs' track.album_id %}">
+            <div class="artist_card">
+                <ul>
+                    <li>
+                        <img src="{{ track.album_image }}" alt="{{ track.name }}">
+                    </li>
+                </ul>
+                <div class="artist_body">
+                    {{ track.name }} by {{ track.album_artist_name }}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    
+
+  </section>
+  <section class="podcast_section">
+    <div class="text">
+      <a href="#" class="linked_2">Recomnded Artists for {{username}}</a>
+    </div>
+    <div class="cards">
+      {% if Random_artists %}
+        {% for artist in Random_artists %}
+        <a href="{% url "artist_songs" artist.id %}">
+            <div class="artists_card">
+                <ul>
+                    <li>
+                        <img src="{{ artist.album.images.0.url }}" alt="{{ artist.name }}">
+                    </li>
+                </ul>
+                <div class="artists_body">
+                    {{ artist.name }}
+                    <br>
+                    {{ artist.type }}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+     
+      {% endif %}
+
+    </div>
+  </section>
+  
+  <section class="podcast_section">
+    <div class="text">
+      <a href="#" class="linked_2"> {{username}}'s playlist</a>
+    </div>
+    <div class="container">
+      {% comment %} {% if recomended_tracks %}
+        {% for track  in recomended_tracks %}
+          {% comment %} <a href="{% url "songs" track.artist.id %}"> 
+            <div class="artist_card">
+                <ul>
+                    <li>
+                        <img src="{{ track.image }}" alt="{{ track.name }}">
+                    </li>
+                </ul>
+                <div class="artist_body">
+                    {{ track.artist }}
+                    <br>
+                    {{ artist.type }}
+                </div>
+            </div>
+        </a>
+        {% endfor %} {% endcomment %}
+        {% if Playlists %}
+        {% for playlist in Playlists %}
+        <a href="{% url 'playlist_songs' playlist.id %}">
+            <div class="artist_card">
+                <ul>
+                    <li>
+                        <img src="{{ playlist.image }}" alt="{{ playlist.name }}">
+                    </li>
+                </ul>
+                <div class="artist_body">
+                    {{ playlist.name }} 
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% else %}
+            <p>No playlist data found.</p>
+        {% endif %}
+
+        {% if rec_playlist %}
+        {% for playlist  in rec_playlist %}
+        <a href="{% url 'playlist_songs' playlist.playlist_id %}">
+          <div class="artist_card">
+              <ul>
+                  <li>
+                      <img src="{{ playlist.playlist_image }}" alt="{{ playlist.playlist_name }}">
+                  </li>
+              </ul>
+              <div class="artist_body">
+                  {{ playlist.playlist_name }} 
+              </div>
+          </div>
+      </a>
+        {% endfor %}
+        {% else %}
+            <p>No playlist data found.</p>
+        {% endif %}
+    </div>
+
+
+  </section>
+</div>
+
+{% endblock %}

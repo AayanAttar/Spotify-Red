@@ -1,0 +1,182 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block css %}
+<!-- Including the custom CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/style4.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/music.css' %}" />
+
+{% endblock %}
+
+{% block title %}
+Songs
+{% endblock %}
+
+{% block content %}
+<div class="music_area">
+    <section class="nav_section">
+        {% if album_info %}
+        {% for album in album_info %}
+        <nav class="artist_container">
+            <img src="{{ album.image }}" alt="{{ album.name }}" class="artist_image">
+
+            <div class="artist_info">
+                <h2>{{ album.name }}</h2>
+                <div class="artist_links">
+                    <div class="artist_info">
+                        <div class="artist_links">
+                            {% for artist in album.artists %}
+                            <a href="{% url "artist_songs" artist.id %}">{{ artist.name }} •</a>
+                            {% endfor %}
+                            {{ total_songs }} {{ total_songs|pluralize:"song,songs" }} • {{ total_duration }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="types">
+                    <p id="type">{{album.type}} </p>
+                </div>
+            </div>
+        </nav>
+        {% endfor %}
+        {% elif artist_info %}
+        {% for artist in artist_info %}
+        <nav class="artist_container">
+            <img src="{{ artist.image }}" alt="{{artist.name }}" class="artists_image">
+
+            <div class="artists_info">
+                <h2>{{ artist.name }}</h2>
+                <h3> {{artist.followers }} Followers</h3>
+            </div>
+        </nav>
+        {% endfor %}
+
+
+        {% elif playlist_metadata %}
+        <nav class="artist_container">
+            <img src="{{ playlist_metadata.playlist_image }}" alt="{{ playlist_metadata.playlist_name }}"
+                class="playlist_image">
+            <div class="playlist_info">
+                <h5>{{playlist_metadata.playlist_type}}</h5>
+                <h2>{{ playlist_metadata.playlist_name }}</h2>
+                <h5>{{ playlist_metadata.playlist_desc }}</h5>
+                {{ playlist_metadata.playlist_total_songs }} {{ playlist_metadata.playlist_total_songs|pluralize:"song,songs" }} • {{ playlist_metadata.total_duration }}
+            </div>
+        </nav>
+        {% endif %}
+
+    </section>
+
+    <div class="play_button_container" onclick="playSong()">
+        <div class="circle">
+            <div class="triangle"></div>
+        </div>
+    </div>
+    <section class="songs_list">
+        <div class="song-list">
+            <!-- Header Row -->
+
+            {% if artist_info %}
+            <nav class="header">
+                <div class="header-title">Title</div>
+                <div class="header-album">Popularity</div>
+                <div class="header-duration">Duration</div>
+            </nav>
+            {% else %}
+            <nav class="header">
+                <div class="header-title">Title</div>
+                <div class="header-album">Album</div>
+                <div class="header-duration">Duration</div>
+            </nav>
+
+            
+
+
+
+
+
+            {% endif %}
+
+            {% if track_info %}
+            {% for track in track_info %}
+            <div class="song-item">
+                <div class="track-number">{{ forloop.counter }}</div> <!-- Track Number -->
+                <div class="song-info">
+                {% for album in album_info %}
+                <img src={{album.image}} alt={{track.name}} class="song-img">
+                {% endfor %}
+                    <div class="text-content">
+                        <div class="song-title">
+                            <a href="#"> {{track.name}} </a>
+
+                            </div>
+                        <div class="song-artist">
+                            {% for artist in track.track_artists %}
+                            <a href="{% url "artist_songs" artist.id %}">  {{ artist.name }} {% if not forloop.last %}, {% endif %} </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="song-album">{{track.type}}</div>
+                <div class="song-duration">{{track.duration}}</div>
+            </div>
+            {% endfor %}
+
+            {% elif artist_top_track %}
+            {% for track in artist_top_track %}
+            <div class="song-item">
+                <div class="track-number">{{ forloop.counter }}</div>
+                <div class="song-info">
+                    <img src="{{ track.track_image }}" alt="{{ track.track_name }}" class="song-img">
+                    <div class="text-content"> 
+                        <div class="song-title">
+                            <a href="#">{{ track.track_name }} </a>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="song-album">{{ track.track_popularity }}</div>
+                <div class="song-duration">{{ track.track_duration }}</div>
+            </div>
+            {% endfor %}
+
+
+            {% elif playlist_info %}
+            {% for track in playlist_info %}
+            <div class="song-item">
+                <div class="track-number">{{ forloop.counter }}</div> <!-- Track Number -->
+                <div class="song-info">
+                    <img src="{{ track.track_image }}" alt="{{ track.track_name }}" class="song-img">
+                    <div class="text-content">
+                        <div class="song-title"> 
+                            <a href="{% url "track_play" track.track_id %}">{{ track.track_name }} </a>
+                         </div>   
+
+                        <div class="song-artist"> 
+                            {% for artist in track.track_artist_info %}
+                                <a href="{% url "artist_songs" artist.track_artist_id %}">{{ artist.track_artist_name }} {% if not forloop.last %}, {% endif %}</a>
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="song-album">
+                    <a href="{% url 'album_songs' track.album_id %}"> {{ track.album_name }} </a>
+                </div>
+                <div class="song-duration">{{ track.track_duration }}</div>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+            <!-- <img src={{songs.album_image}} alt={{songs.album_name}} class="song_img"> -->
+
+            <!-- Add more songs as needed -->
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '/static/javascript/script.js' %}"></script>
+    </body> -->
