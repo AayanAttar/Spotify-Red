@@ -1,0 +1,200 @@
+body {
+    /* font-family: Arial, sans-serif; */
+    /* background: linear-gradient(5deg, #000000, #75091e); */
+    background-color: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for both logo and signup */
+.container {
+    display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    align-items: center; /* Center align the content */
+    justify-content: flex-start; /* Align items to the top */
+    height: 90vh; /* Full viewport height */
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    margin-top: 10px;
+}
+
+/* Styling for the logo container */
+.logo-container {
+    display: flex;
+    flex-direction: column; /* Align logo and text vertically */
+    align-items: center; /* Center the logo and text */
+    cursor: pointer;
+     /* Adjust margin as needed */
+    text-align: center;
+}
+
+.logo-container a {
+    text-decoration: none;
+    display: block;
+}
+
+.logo-container .logo {
+    width: auto; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+}
+
+.logo-container h3 {
+    margin-top: 0; /* Space between logo and text */
+    font-size: 35px; /* Adjust font size as needed */
+    color: red;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Styling for the signup container */
+.signup-container {
+    background: #75091e;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px -10px 20px 10px rgb(37, 1, 1), 0px 10px 20px 10px #4d0513;
+    width: 20%;
+    margin-top: 0;
+}
+
+
+
+.signup-container:hover {
+    background-color: #75091e; 
+    transform: scale(1.01); /* Zoom effect */
+   /* Pointer on hover */
+    box-shadow: 0px 0px 30px 20px rgb(37, 1, 1);
+    border-radius: 10px;
+  }
+
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.form-group label {
+    display: block;
+    font-size: 22px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: 5px;
+}
+.form-group input {
+    width: 70%;
+    margin-left: 30px;
+    padding: 10px;
+    border: 1px solid rgb(37, 1, 1);
+    border-radius: 5px;
+    font-size: 18px;
+    background-color: #711f2f;
+    font-weight: bold;
+}
+.form-group input:focus {
+    border-color: black;
+    outline: none;
+}
+.form-group input::placeholder {
+    color: black; /* Change this to your desired color */
+    font-weight: bold;
+}
+.signup-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #33010b;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+.signup-btn:hover {
+    background: #260008;
+}
+.login-link {
+    text-align: center;
+    /* margin-top: 10px; */
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.login-link h3 {
+    font-size: 20px;
+}
+.login-link a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 4px;
+    margin-top: 0;
+}
+.login-link a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+/* login css */
+
+.login-container {
+    background: #75091e;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0px -10px 20px 10px rgb(37, 1, 1), 0px 10px 20px 10px #4d0513;
+    width: 20%;
+    margin-top: 0;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family:  Arial;
+}
+.login-container:hover {
+    background-color: #75091e; 
+    transform: scale(1.01); /* Zoom effect */
+    cursor: pointer; /* Pointer on hover */
+    box-shadow: 0px 0px 30px 20px rgb(37, 1, 1);
+    border-radius: 10px;
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #33010b;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-btn:hover {
+    background: #260008;
+}
+.signup-link {
+    text-align: center;
+    /* margin-top: 10px; */
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.signup-link h3 {
+    font-size: 20px;
+}
+.signup-link a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin-left: 4px;
+    margin-top: 0;
+}
+.signup-link a:hover {
+    text-decoration: underline;
+    color: black;
+}

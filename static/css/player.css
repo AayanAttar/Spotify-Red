@@ -1,0 +1,55 @@
+.track_container {
+    display: flex;
+    align-items: center;
+    /* background: linear-gradient(to right, #4d1c14, #3b0e08); Adjust based on theme */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.track_image {
+    width: 20vw;
+    height: 250px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.player_info {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-top: 80px;
+}
+
+
+
+.track_name {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.track_info {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-top: 5px;
+    text-decoration: none;
+}
+.track_info a:hover {
+    text-decoration: underline;
+}
+
+.artist_image {
+    height: 30px;
+    width: 30px;
+    border-radius: 90px;
+}
+.track_artist {
+    text-decoration: none;
+    color: white;
+}
+
+.track_album{
+    text-decoration: none;
+    color: white;
+}
+

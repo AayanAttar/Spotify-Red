@@ -1,0 +1,577 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Additional reset styles for page elements that may interfere with background */
+body {
+  background-color: black ;
+  color: white ; /* Optional */
+  overflow: hidden;
+}
+
+
+/* Navbar Css */
+.navbar {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px;
+    display: flex;
+    border-radius: 20px;
+    align-items: center;
+  }
+
+  /* Logo Styling */
+  .navbar .navbar-brand img {
+    height: 60px;    /* Maintain aspect ratio of the logo */
+  }
+
+  .navbar a {
+    color: white;
+  }
+  .navbar a:hover {
+    color: #ddd;
+  }
+  .search-container {
+    position: absolute;
+    top: 8px;
+    left: 30%;
+    transform: translate(-50, -50);
+    width: 30%;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    
+  }
+
+  .search-container input[type="search"] {
+    border-radius: 20px;
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    border: 1px  #ccc;
+    background-color: gray !important; /* Set the background color to gray */
+    color: white; /* Set the text color to white for contrast */
+    cursor: text;
+}
+
+.navbar input[type="search"]:focus {
+    background-color: white; /* White background on focus */
+    border-color: blue; /* Blue border on focus */
+    outline: none; /* Remove the default focus outline */
+    caret-color: black;
+}
+.navbar input[type="search"]::placeholder {
+  font-weight: bold; /* Bold placeholder text */
+  color: black; /* Change placeholder color (optional) */
+}
+  .search-container button {
+    background: gray;
+    border: none;
+    color: green;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .navbar button:hover {
+    color: white;
+  }
+
+  
+  /* sidebar starts here */
+  .sidebar {
+    position: fixed;
+    top: 60px; /* Just below the navbar */
+    left: -200px; /* Initially hidden */
+    width: 200px;
+    height: 80%;
+    background-color: #1c1b1b;
+    overflow-x: hidden;
+    transition: left 0.2s ease-in-out;
+    z-index: 999;
+    padding-top: 60px;
+    margin-top: 20px;
+   margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    background-color: #1c1b1b;
+    color: #1c1b1b;
+}
+
+
+/* Sidebar toggle button styles */
+.sidebar-toggle {
+    position: fixed;
+    top: 90px; /* Adjust according to navbar height */
+    left: 20px;
+    background-color: transparent;
+    color: white;
+    padding: 8px 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.sidebar-toggle:hover {
+    background-color: #1c1b1b;
+}
+/* When sidebar is open */
+.sidebar.open {
+  left: 0;
+  background-color: #1c1b1b;
+
+}
+/* main content starts here */
+.container {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* height: 100%; Full screen height */
+   /* Push content below the navbar */
+   transition: margin-left 0.3s ease;
+   height: calc(100vh - 150px);
+   overflow-y: auto;
+   margin-left: 20px;
+   padding: 20px;
+
+
+
+
+}
+/* Content styles */
+.content {
+    margin-top: 20px; /* Push content below the navbar */
+    padding: 20px;
+    /* margin-left: 20px; */
+    background-color: #1c1b1b;
+    border-radius: 10px;
+    /* width: 99%; */
+    /* transition: margin-left 0.3 ease-in-out; */
+    height: 100%;
+  }
+
+/* Add a scrollbar if content overflows */
+.content::-webkit-scrollbar {
+  width: 8px;
+  
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  height: 2px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+ 
+
+.container.sidebar.open {
+  margin-left: 200px;
+}
+
+
+
+
+
+/* Sidebar Styles */
+/* .sidebar {
+  position: fixed;
+  top: 60px;
+  left: -200px;
+  width: 200px;
+  height: calc(85% - 60px);
+  background-color: #131313;
+  overflow-y: auto;
+  transition: left 0.2s ease;
+  padding-top: 60px;
+  margin-top: 20px;
+  z-index: 999;
+  border-radius: 10px;
+} */
+
+
+
+
+
+
+
+
+<body>
+    <section class="nav_section">
+        <nav class="artist_container">
+            <img src="https://www.hindustantimes.com/ht-img/img/2024/10/06/1600x900/bigg-boss-salman-khan_1728197723568_1728197727666.jpg"
+                alt="Salman khan" class="artist_image">
+
+            <div class="artist_info">
+                <h2>Salman Khan Mix</h2>
+                <div class="artist_links">
+                    <a href="#">SRK</a>
+                    <a href="#">amir</a>
+                    <a href="#">saif</a>
+                </div>
+
+                <div class="artist_stats">
+                    <p id="total-songs">Total Songs: 0, Total Playtime: 00:00:00</p>
+                    <!-- <p id="total-playtime">Total Playtime: 00:00:00</p> -->
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <div class="play_button_container">
+        <div class="circle">
+            <div class="triangle"></div>
+        </div>
+    </div>
+    <section class="songs_list">
+        <div class="song-list">
+            <!-- Header Row -->
+            <div class="song-header">
+                <div class="header-title">Title</div>
+                <div class="header-album">Album</div>
+                <div class="header-duration">Duration</div>
+            </div>
+            <!-- Divider Line -->
+            <hr class="divider">
+            <!-- Song Items -->
+            <div class="song-item">
+                <img src="https://imagesvs.oneindia.com/hi/img/2024/12/salmankhanfiring2-1735284041.jpg" alt="bhau"
+                    class="song_img">
+                <div class="song-title">Song 1</div>
+                <div class="song-album">Album 1</div>
+                <div class="song-duration">3:45</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 2</div>
+                <div class="song-album">Album 2</div>
+                <div class="song-duration">4:00</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <div class="song-item">
+                <div class="song-title">Song 3</div>
+                <div class="song-album">Album 3</div>
+                <div class="song-duration">3:30</div>
+            </div>
+            <!-- Add more songs as needed -->
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/javascript/script.js"></script>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Red</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style4.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/music.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome for Magnifying Glass Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo and Home Link -->
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <img src="static/logo.jpg" alt="Logo" height="60" class="me-2">
+            </a>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input class="form-control me-2" type="search" placeholder="What do you want to listen??"
+                    aria-label="Search">
+                <button class="btn" type="submit">
+                    <i class="fas fa-search"></i> <!-- Font Awesome magnifying glass icon -->
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- sidebar button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z">
+            </path>
+        </svg>
+        <span class="hidden_text">Your Library</span>
+    </button>
+
+    <!-- sidebar options -->
+    <div class="sidebar" id="sidebar">
+        <button>
+            <a href="#" class="my_music" title="Playlist">
+                <i class="fa-solid fa-music"></i>
+            </a>
+        </button>
+        <!-- <a href="#">Home</a> -->
+    </div>
+
+
+    <div class="music_area">
+        <section class="nav_section">
+            <nav class="artist_container">
+                <img src="https://www.hindustantimes.com/ht-img/img/2024/10/06/1600x900/bigg-boss-salman-khan_1728197723568_1728197727666.jpg"
+                    alt="Salman khan" class="artist_image">
+
+                <div class="artist_info">
+                    <h2>Salman Khan Mix</h2>
+                    <div class="artist_links">
+                        <a href="#">SRK</a>
+                        <a href="#">amir</a>
+                        <a href="#">saif</a>
+                    </div>
+
+                    <div class="artist_stats">
+                        <p id="total-songs">Total Songs: 0, Total Playtime: 00:00:00</p>
+                        <!-- <p id="total-playtime">Total Playtime: 00:00:00</p> -->
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <div class="play_button_container">
+            <div class="circle">
+                <div class="triangle"></div>
+            </div>
+        </div>
+        <section class="songs_list">
+            <div class="song-list">
+                <!-- Header Row -->
+                <div class="song-header">
+                    <div class="header-title">Title</div>
+                    <div class="header-album">Album</div>
+                    <div class="header-duration">Duration</div>
+                </div>
+                <!-- Divider Line -->
+                <hr class="divider">
+                <!-- Song Items -->
+                <div class="song-item">
+                    <img src="https://imagesvs.oneindia.com/hi/img/2024/12/salmankhanfiring2-1735284041.jpg" alt="bhau"
+                        class="song_img">
+                    <div class="song-title">Song 1</div>
+                    <div class="song-album">Album 1</div>
+                    <div class="song-duration">3:45</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 2</div>
+                    <div class="song-album">Album 2</div>
+                    <div class="song-duration">4:00</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <div class="song-item">
+                    <div class="song-title">Song 3</div>
+                    <div class="song-album">Album 3</div>
+                    <div class="song-duration">3:30</div>
+                </div>
+                <!-- Add more songs as needed -->
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="static/javascript/script.js"></script>
+</body>
+
+</html>

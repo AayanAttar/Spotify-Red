@@ -1,0 +1,563 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black !important;
+  color: white !important;
+  overflow: hidden; /* Prevent the whole page from scrolling */
+  /* font-family: Arial, sans-serif; */
+}
+/* html {
+  overflow: hidden;
+} */
+
+/* Navbar Styles */
+.navbar {
+  background-color: black;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.navbar .navbar-brand img {
+  height: 50px;
+  margin-left: 10px;
+}
+
+.search-container {
+  position: absolute;
+  top: 8px;
+  left: 30%;
+  transform:translate(-50,50);
+  width: 30%;
+  /* margin-left: auto; */
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+
+.search-container input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: gray;
+  color: white;
+  cursor: text;
+}
+
+.search-container input:focus {
+  background-color: white;
+  color: black;
+  border-color: rgb(58, 58, 59);
+  outline: none;
+}
+
+.search-container input::placeholder {
+  font-weight: bold; /* Bold placeholder text */
+  color: black; /* Change placeholder color (optional) */
+}
+
+.search-container button {
+  background: gray;
+  border: none;
+  color: green;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.search-container button:hover{
+  color: white;
+}
+
+
+.sidebar {
+  width: 80px; /* Full width when open */
+  height: calc(85% - 60px);
+  margin-left: 10px;
+  background-color: #131313; /* Dark background color */
+  position: fixed;
+  top: 65px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s ease; /* Smooth transition */
+  overflow: hidden;
+  padding-top: 20px;
+  border-radius: 10px;
+  margin-top: 1px;
+}
+
+.sidebar.open {
+  width: 200px;
+}
+
+.sidebar a {
+  display: flex;
+  color: white;
+  text-decoration: none;
+}
+
+/* .sidebar a:hover {
+  background-color:#1c1b1b;
+  color: #1c1b1b;
+} */
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  top: 90px;
+  left: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.svg-button {
+  background-color: #101820; /* Dark background */
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+
+/* SVG styles */
+.svg-icon {
+  width: 26px; /* Adjust size */
+  height: 26px;
+  fill: white; /* Icon color */
+  transition: fill 0.3s ease;
+}
+.svg_icon {
+  width: 26px; /* Adjust size */
+  height: 26px;
+  fill: white; /* Icon color */
+  transition: fill 0.3s ease;
+}
+
+/* Change icon color on hover */
+.svg-button:hover .svg-icon {
+  fill: #101820;
+}
+
+.hidden_text {
+  display: none;
+  margin-left: 10px;
+}
+
+.sidebar.open .hidden_text {
+  display: inline;
+  color: white;
+
+}
+
+/* Styling for the Library button (You can also adjust this as needed) */
+.sidebar .Library {
+  padding-top: 20px; /* Add some padding at the top of the Library link */
+  position: fixed;
+}
+
+/* Make sure My Music is below Library and stays in place */
+.sidebar .my_music {
+  position: absolute; /* Position it absolutely at the bottom */
+  top: 90px; /* Add space from the bottom */
+  left: 0;
+  width: 50px; /* Make it span the full width of the sidebar */
+  height: 50px;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  background-color: #302d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(20%);
+  /*border-top: 1px solid #444;  Optional: adds a line above the button */
+  
+}
+.sidebar .my_music i {
+  font-size: 24px;
+}
+.sidebar .my_music:hover {
+  background-color: #514d4d;
+  border-radius: 10px;
+}
+
+/* Optional: Additional styles for the icons */
+.sidebar i {
+  margin-right: 10px; /* Space between the icon and the text */
+}
+
+/* css for music area starts here */
+.music_area {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-left: 100px;
+  position: relative;
+  width: 92vw;
+  height: calc(85vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #131313;
+  border-radius: 10px;
+  transition: margin-left 0.3s ease;
+}
+
+/* css for buttons in navbar */
+.navi {
+  /* display: flex; */
+  position: sticky;
+  top: 0;
+  background-color: #131313;
+  padding: 10px 10px;
+  width: 92.5vw;
+  border-radius: 10px; 
+  z-index: 1;
+  margin-left: 0;
+  padding-left: 0;
+}
+.navi ul {
+  margin: 0;
+}
+/* style for buttons */
+ .rounded-pill {
+   list-style: none;
+   display: flex;
+   gap: 7px;
+ }
+  
+.rounded-pill li {
+   display: inline-block;
+ } 
+  
+ .rounded-pill li a {
+   display: inline-block;
+   padding: 10px 20px; /* Adjust padding for the pill shape */
+   text-decoration: none; /* Remove underline */
+   background-color: #2d2b2b; /* Light gray background */
+   color: #ffffff; /* Dark text color */
+   border-radius: 40px; /* Rounded edges for pill shape */
+   font-family: Arial, sans-serif;
+   font-size: 12px;
+   text-align: center;
+   transition: background-color 0.2s, color 0.2s; /* Add hover transition */
+ }
+  
+ .rounded-pill li a:hover {
+   background-color: #403d3d; 
+    color: #fff;
+ }
+
+ .artist_section{
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 0px;
+ }
+
+ .cards {
+  display: flex;justify-content: flex-start;
+  height: 35vh;
+  margin-top: 5px;
+  overflow-x:scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+.cards a {
+  text-decoration: none; /* Remove underline */
+  color: inherit;        /* Ensure text color matches the parent */
+}
+
+.cards a:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+}
+.nav_text {
+  padding: 10px;
+  text-align: left;   /* left-align the text */
+  /* margin-top: 5px; */
+}
+
+.linked {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: gray;
+  text-decoration: none; /* Removes the underline from the link */
+  transition: color 0.3s ease;
+}
+
+.linked:hover {
+  color: white; /* Change color when hovered */
+  text-decoration: none; /* Optional: Add underline on hover */
+}
+
+.artist_card {
+  /* display: block; */
+  background-color:transparent ;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: center;
+  height: auto; /* Adjusted height */
+  width: 180px; /* Adjusted width */
+}
+
+.artist_card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  margin-top: 5px; 
+  margin-left: 5px; 
+  box-shadow: none; 
+}
+
+.artist_body {
+   margin-top: 0;
+  font-size: 13px; /* Font size matching the image */
+  /* color: red; */
+}
+
+.artist_card:hover {
+  background-color: #403d3d; /* Darker background on hover */
+  transform: scale(1.01); /* Zoom effect */
+  cursor: pointer; /* Pointer on hover */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.artist_card ul {
+  display: flex !important;
+  flex-direction: row; 
+  padding-left: 0; 
+  margin-left: 5px;
+}
+.artist_card li {
+  display: flex !important;
+  flex-direction: row; 
+  padding-left: 0; 
+}
+
+.artist_card ul li {
+  display: flex !important;
+  list-style-type: none; 
+}
+
+.artists_card {
+  /* display: block; */
+  background-color:transparent ;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: center;
+  height: auto; /* Adjusted height */
+  width: 180px; /* Adjusted width */
+}
+
+.artists_card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 90px;
+  margin-top: 5px; 
+  margin-left: 5px; 
+  box-shadow: none; 
+}
+
+.artists_body {
+   margin-top: 0;
+  font-size: 13px; /* Font size matching the image */
+  /* color: red; */
+}
+
+.artists_card:hover {
+  background-color: #403d3d; /* Darker background on hover */
+  transform: scale(1.01); /* Zoom effect */
+  cursor: pointer; /* Pointer on hover */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.artists_card ul {
+  display: flex !important;
+  flex-direction: row; 
+  padding-left: 0; 
+  margin-left: 5px;
+}
+.artists_card li {
+  display: flex !important;
+  flex-direction: row; 
+  padding-left: 0; 
+}
+
+.artists_card ul li {
+  display: flex !important;
+  list-style-type: none; 
+}
+
+.music_area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.music_area::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+  height: 2px;
+}
+
+.music_area::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+/* .text {
+  display: block;
+  margin-top: 0;
+  text-decoration: none;
+} */
+.podcast_section  { 
+  margin-top: 0;
+  padding: 0;
+}
+
+.linked_2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 20px;
+  color: gray;
+  text-decoration: none; /* Removes the underline from the link */
+  transition: color 0.3s ease;
+  margin-top: 0;
+}
+
+.linked_2:hover {
+  color: white; /* Change color when hovered */
+  text-decoration: none; /* Optional: Add underline on hover */
+}
+
+.container {
+  display: flex;justify-content: flex-start;
+  height: 35vh;
+  margin-top: 5px;
+  overflow-x:scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 10px;
+  gap: 10px;
+}
+
+.container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.podcast_card {
+  background-color:transparent ;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 10px;
+  text-align: center;
+  height: auto; /* Adjusted height */
+  width: 180px; /* Adjusted width */
+}
+
+.podcast_card img {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  margin-top: 5px; 
+  margin-left: 5px; 
+  box-shadow: none;
+}
+
+.podcast_body {
+  margin-top: 3px; /* Adjusted for proper spacing */
+  font-size: 12px; /* Font size matching the image */
+  text-decoration: none;
+  color: inherit;
+}
+
+.podcast_card:hover {
+  background-color: #403d3d; /* Darker background on hover */
+  transform: scale(1.01); /* Zoom effect */
+  cursor: pointer; /* Pointer on hover */
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* when sidebar is open */
+/* .sidebar.open {
+  left: 0;
+}
+.sidebar.closed {
+  width: 20px;
+}*/
+
+.music_area.sidebar-open {
+  margin-left: 220px;
+} 
+
+
+.logout-btn {
+  background-color: #d9534f; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 300px;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c; /* Slightly darker red */
+}
+
+.logout-btn:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.login-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
